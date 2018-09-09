@@ -43,10 +43,10 @@ db.customers.update(
   {
     first_name:"Dan"
   }, 
-	{
-		first_name:"Dan",
-		last_name:"Bader",
-		book: "Python Tricks"
+  {
+    first_name:"Dan",
+    last_name:"Bader",
+    book: "Python Tricks"
 })
 
 # Output of Above Update Query:
@@ -67,6 +67,17 @@ db.customers.update({first_name:"Dan"}, {$set:{gender:"Male"}})
         "last_name" : "Bader",
         "book" : "Python Tricks",
         "gender" : "Male"
+}
+
+# Removing gender field:
+db.customers.update({first_name:"Dan"}, {$unset:{gender:1}})
+
+# Output of $unset method:
+{
+        "_id" : ObjectId("5b94dfe5b8e7141162927c09"),
+        "first_name" : "Dan",
+        "last_name" : "Bader",
+        "book" : "Python Tricks"
 }
 
 
