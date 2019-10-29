@@ -8,6 +8,7 @@
 ```bash
 # List all database:
 show databases
+show dbs
 
 # Create(if doesnot exist) and select database:
 use database_name
@@ -38,7 +39,7 @@ db.customers.insert([
 db.customers.find()
 db.customers.find().pretty()
 
-# Update Documents with new value:
+# Update Documents with new value (which will actually replace the existing record):
 db.customers.update(
   {
     first_name:"Dan"
@@ -49,37 +50,16 @@ db.customers.update(
     book: "Python Tricks"
 })
 
-# Output of Above Update Query:
-{
-        "_id" : ObjectId("5b94dfe5b8e7141162927c09"),
-        "first_name" : "Dan",
-        "last_name" : "Bader",
-        "book" : "Python Tricks"
-}
+# Update/add for matched doc, without losing earlier details (without replacing):
+db.customers.update({first_name:"Dan"}, {$set:{gender:"Male"}})  
 
-# Update without losing earlier details:
-db.customers.update({first_name:"Dan"}, {$set:{gender:"Male"}})
-
-# Output of above $set method
-{
-        "_id" : ObjectId("5b94dfe5b8e7141162927c09"),
-        "first_name" : "Dan",
-        "last_name" : "Bader",
-        "book" : "Python Tricks",
-        "gender" : "Male"
-}
+# Increment operator (increments age value by 1)
+db.customers.update({first_name:"Prasad"}, {$inc:{age:1}})  
 
 # Removing gender field:
 db.customers.update({first_name:"Dan"}, {$unset:{gender:1}})
 
-# Output of $unset method:
-{
-        "_id" : ObjectId("5b94dfe5b8e7141162927c09"),
-        "first_name" : "Dan",
-        "last_name" : "Bader",
-        "book" : "Python Tricks"
-}
-
-
+# Remove document
+db.customers.remove({first_name:"Prasad"})
 
 ```
