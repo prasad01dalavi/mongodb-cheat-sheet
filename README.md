@@ -42,8 +42,12 @@ db.customers.find().pretty()
 # Find required 
 db.customers.find({$or:[{first_name: "Prasad"}, {first_name: "Dan"}]}).  # OR condition
 db.customers.find({age: {$lt:40}})					 # age less than 40
+db.customers.find().sort({last_name: 1})                                 # sort names asc (if -1 then desc)
 
+db.customers.find({first_name: "prasad"}).count()		 	 # Number of docs
 
+# Note
+db.customers.find({"address.city": "Pune"})				 # To find data in object
 
 # Update Documents with new value (which will actually replace the existing record):
 db.customers.update(
