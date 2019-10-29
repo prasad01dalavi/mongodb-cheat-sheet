@@ -39,6 +39,12 @@ db.customers.insert([
 db.customers.find()
 db.customers.find().pretty()
 
+# Find required 
+db.customers.find({$or:[{first_name: "Prasad"}, {first_name: "Dan"}]}).  # OR condition
+db.customers.find({age: {$lt:40}})					 # age less than 40
+
+
+
 # Update Documents with new value (which will actually replace the existing record):
 db.customers.update(
   {
