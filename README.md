@@ -1,4 +1,4 @@
-# Mongo Database Tutorial
+# Mongo Database Cheat Sheet
 -- MongoDB is a NoSQL Database
 
 -- Default Server URL: localhost:27017
